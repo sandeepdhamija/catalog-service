@@ -1,6 +1,21 @@
 spring:
   application:
-          name:catalog-service
+        name: catalog-service
+  config:
+    import: "optional:configserver:"
+  cloud:
+    config:
+      uri: http://localhost:8888
+      request:
+        connect-timeout: 1000
+        read-timeout: 1000
+      fail-fast: false
+      retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 1000
+          multiplier: 1.5
+          max-interval: 5000
 
 server:
   port: 9001
@@ -12,4 +27,4 @@ server:
       min-spare: 5
 
 polar:
-  greeting: "Welcome to Catalog Service"
+  greeting: "Welcome to local Catalog Service"
