@@ -1,4 +1,19 @@
 spring:
+  sql:
+    init:
+      mode: always
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/polardb_catalog
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      pool-name: catalog-service-pool
+      validation-timeout: 5000
   application:
         name: catalog-service
   config:
@@ -28,3 +43,9 @@ server:
 
 polar:
   greeting: "Welcome to local Catalog Service"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
